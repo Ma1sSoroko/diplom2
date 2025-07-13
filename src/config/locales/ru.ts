@@ -21,5 +21,6 @@ export const ru: { [key: string]: { [key: string]: string } } = {
     basket: {
         title: 'Корзина',
         empty: 'В корзине нет книг',
+        order: 'Оформить заказ',
     },
 }

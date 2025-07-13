@@ -40,6 +40,12 @@ export const removeBasket = createAsyncThunk<Book, Book, { rejectValue: string }
     }
 )
 
+export const order = createAsyncThunk<Book[], Book[], { rejectValue: string }>(
+    'books/order', async (books) => {
+        return books
+    }
+)
+
 const initialState: BooksStateType = {
     books: null,
     error: null,
@@ -80,6 +86,10 @@ export const booksSlice = createSlice({
             })
             .addCase(removeBasket.fulfilled, (state, action: PayloadAction<Book>) => {
                 state.basket = state.basket.filter(book => book.isbn13 !== action.payload.isbn13)
+                state.isLoading = false
+            })
+            .addCase(order.fulfilled, (state, action: PayloadAction<Book[]>) => {
+                state.basket = []
                 state.isLoading = false
             })
     }

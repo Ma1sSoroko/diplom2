@@ -3,7 +3,7 @@ import { useOutletContext } from 'react-router'
 import { locales } from '../config/locales'
 import type { TitleContextType } from '../types'
 import { useAppSelector, useAppDispatch } from '../redux/showModals/store'
-import { fetchBooks } from '../redux/booksSlice'
+import { fetchBooks, order } from '../redux/booksSlice'
 import { BookBasket } from '../components/bookBasket/BookBasket'
 
 export function Basket(): React.ReactElement {
@@ -22,12 +22,24 @@ export function Basket(): React.ReactElement {
         return <div>{locales[lang].basket.empty}</div>
     }
 
+    const handleClickOrder = () => {
+        dispatch(order(basket))
+    }
+
     return (
-        <div className="d-flex flex-wrap gap-3 justify-content-center">
-            {basket.map(book => {
-                if (!book.title || !book.image) return null;
-                return <BookBasket key={book.isbn13} {...book} />;
-            })}
-        </div>
+        <>
+            <div className="d-flex flex-wrap gap-3 justify-content-center mb-5">
+                {basket.map(book => {
+                    if (!book.title || !book.image) return null;
+                    return <BookBasket key={book.isbn13} {...book} />;
+                })}
+            </div>
+            <div className="w-75 d-flex flex-column align-items-end justify-content-center">
+                <div>
+                    <p>Total price: 1 000$</p>
+                </div>
+                <button className="btn btn-dark" onClick={handleClickOrder}>{locales[lang].basket.order}</button>
+            </div>
+        </>
     )
 }

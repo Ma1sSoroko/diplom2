@@ -21,5 +21,6 @@ export const en: { [key: string]: { [key: string]: string } } = {
     basket: {
         title: 'Basket',
         empty: 'No books in basket',
+        order: 'Order',
     },
 }
