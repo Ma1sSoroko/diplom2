@@ -35,7 +35,7 @@ export function Header(): React.ReactElement {
               </Link>
             </div>
             <div className="mx-2">
-              <Link to="/bookmarks">
+              <Link to="/basket">
                 <FaShoppingBasket className="text-dark" />
               </Link>
             </div>

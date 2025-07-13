@@ -1,8 +1,8 @@
 import { Link } from 'react-router'
 import { useAppDispatch } from '../../redux/showModals/store'
-import { addFavoriteBook } from '../../redux/booksSlice'
+import { addBasket, addFavoriteBook } from '../../redux/booksSlice'
 import type { Book } from '../../types'
-import { FaBookmark } from 'react-icons/fa'
+import { FaBookmark, FaShoppingBasket } from 'react-icons/fa'
 
 export function Book(props: Book): React.ReactElement {
     const { title, price, image, isbn13 } = props
@@ -10,6 +10,10 @@ export function Book(props: Book): React.ReactElement {
 
     function handleClickAddToFavorite() {
         dispatch(addFavoriteBook(props))
+    }
+
+    function handleClickAddToBasket() {
+        dispatch(addBasket(props))
     }
 
     return (
@@ -23,11 +27,14 @@ export function Book(props: Book): React.ReactElement {
                     <p className="card-text font-size-14">{price}</p>
                 </div>
                 <div className="d-flex justify-content-between flex-end">
-                    <div className="d-flex gap-2">
-                        <Link to={`/book/${isbn13}`} className="btn">Подробнее</Link>
-                    </div>
-                    <div className="btn mb-2" onClick={handleClickAddToFavorite}>
-                        <FaBookmark className="text-dark" />
+                    <Link to={`/book/${isbn13}`} className="btn">More</Link>
+                    <div>
+                        <div className="btn mb-2" onClick={handleClickAddToFavorite}>
+                            <FaBookmark className="text-dark" />
+                        </div>
+                        <div className="btn mb-2" onClick={handleClickAddToBasket}>
+                            <FaShoppingBasket className="text-dark" />
+                        </div>
                     </div>
                 </div>
             </div>

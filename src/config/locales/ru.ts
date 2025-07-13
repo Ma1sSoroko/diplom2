@@ -13,8 +13,13 @@ export const ru: { [key: string]: { [key: string]: string } } = {
         title: 'Избранные книги',
         empty: 'Избранных книг нет',
     },
-
     search: {
         title: 'Поиск',
+        placeholder: 'Поиск',
+        result: 'Результаты поиска для',
+    },
+    basket: {
+        title: 'Корзина',
+        empty: 'В корзине нет книг',
     },
 }

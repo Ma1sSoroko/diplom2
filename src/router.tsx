@@ -5,7 +5,7 @@ import { AllBooks } from './pages/AllBooks'
 import { FavoriteBooks } from './pages/FavoriteBooks'
 import type { RouteObject } from 'react-router'
 import { BookPage } from './pages/Book'
-
+import { Basket } from './pages/Basket'
 
 const routes: RouteObject[] = [
     {
@@ -35,6 +35,10 @@ const routes: RouteObject[] = [
             {
                 path: '/books/search/:query/:currentPage',
                 element: <Search />,
+            },
+            {
+                path: '/basket',
+                element: <Basket />,
             },
         ],
     },

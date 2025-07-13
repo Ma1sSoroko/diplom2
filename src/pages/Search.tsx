@@ -13,7 +13,7 @@ export function Search(): React.ReactElement {
     useEffect(() => { setTitle(locales[lang].search.title) }, [lang])
 
     useEffect(() => {
-        setTitle(`Результат поиска по «${query}»`)
+        setTitle(`${locales[lang].search.result} «${query}»`)
     
         return () => {
           setTitle('')

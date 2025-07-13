@@ -40,6 +40,8 @@ export type BooksStateType = {
   error: string | null,
   isLoading: boolean,
   favoriteBooks: Book[],
+  basket: Book[],
+  query: string,
 }
 
 export type BooksParamsType = {

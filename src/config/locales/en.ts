@@ -13,8 +13,13 @@ export const en: { [key: string]: { [key: string]: string } } = {
         title: 'Favorite Books',
         empty: 'No favorite books',
     },
-
     search: {
         title: 'Search',
+        placeholder: 'Search',
+        result: 'Search results for',
+    },
+    basket: {
+        title: 'Basket',
+        empty: 'No books in basket',
     },
 }

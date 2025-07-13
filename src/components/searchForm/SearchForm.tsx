@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { Input } from '../input/Input'
+import { locales } from '../../config/locales'
+import { useAppSelector } from '../../redux/showModals/store'
 
 export function SearchForm() {
+  const lang = useAppSelector(state => state.lang.lang)
   const { query } = useParams<{ query: string }>()
   const navigate = useNavigate()
   const [value, setValue] = useState(query)
@@ -29,7 +32,7 @@ export function SearchForm() {
         type="search"
         value={value}
         onChange={handleChange}
-        placeholder="Search"
+        placeholder={locales[lang].search.placeholder}
       />
     </form>
   )

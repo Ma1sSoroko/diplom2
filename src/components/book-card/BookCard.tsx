@@ -1,13 +1,20 @@
+import { addBasket } from "../../redux/booksSlice"
+import { useAppDispatch } from "../../redux/showModals/store"
 export function BookCard(props: { title: string, subtitle: string, authors: string, publisher: string, pages: string, year: string, rating: string, desc: string, price: string, image: string }) {
     const { title, subtitle, authors, publisher, pages, year, rating, desc, price, image } = props
+    const dispatch = useAppDispatch()
+
+    function handleClickAddToBasket() {
+        dispatch(addBasket(props))
+    }
 
     return (
         <>
-            <div className="mb-3">
-                <h1>{title}</h1>
-                <h2>{subtitle}</h2>
-            </div>
             <div className="card p-5">
+                <div className="mb-3">
+                    <h1>{title}</h1>
+                    <h2>{subtitle}</h2>
+                </div>
                 <div className="w-100 mb-4 d-flex justify-content-between align-items-center">
                     <div>
                         <img src={image} alt="#" className="w-100" />
@@ -39,6 +46,9 @@ export function BookCard(props: { title: string, subtitle: string, authors: stri
                                     <p className="text-transform-uppercase font-size-10">{rating}</p>
                                 </div>
                             </div>
+                        </div>
+                        <div>
+                            <button className="btn btn-dark" onClick={handleClickAddToBasket}>Добавить в корзину</button>
                         </div>
                     </div>
                 </div>
