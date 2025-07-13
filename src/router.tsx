@@ -5,7 +5,7 @@ import { AllBooks } from './pages/AllBooks'
 import { FavoriteBooks } from './pages/FavoriteBooks'
 import type { RouteObject } from 'react-router'
 import { BookPage } from './pages/Book'
-import { Basket } from './pages/Basket'
+import { Card } from './pages/Card'
 
 const routes: RouteObject[] = [
     {
@@ -37,8 +37,8 @@ const routes: RouteObject[] = [
                 element: <Search />,
             },
             {
-                path: '/basket',
-                element: <Basket />,
+                path: '/card',
+                element: <Card />,
             },
         ],
     },

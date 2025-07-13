@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { useParams, NavLink, useOutletContext } from 'react-router'
 import { Book } from '../components/book/Book'
-import { locales } from '../config/locales'
+import { locales } from '../config'
 import type { TitleContextType } from '../types'
-import { useAppSelector, useAppDispatch } from '../redux/showModals/store'
+import { useAppSelector, useAppDispatch } from '../redux/store'
 import { fetchBooks } from '../redux/booksSlice'
 import { buildSchemePagination } from '../utils/buildPagination'
 

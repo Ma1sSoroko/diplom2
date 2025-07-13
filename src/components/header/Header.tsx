@@ -1,10 +1,10 @@
 import { Link } from 'react-router'
 import { SearchForm } from '../searchForm/SearchForm'
 import type { LangType } from '../../types'
-import { useAppSelector, useAppDispatch } from '../../redux/showModals/store'
+import { useAppSelector, useAppDispatch } from '../../redux/store'
 import { setLang } from '../../redux/lang/langSlice'
 import logo from '../../assets/Logo-black.png'
-import { FaBookmark, FaShoppingBasket } from "react-icons/fa"
+import { FaBookmark, FaShoppingBasket } from 'react-icons/fa'
 
 export function Header(): React.ReactElement {
   const lang = useAppSelector(state => state.lang.lang)
@@ -35,7 +35,7 @@ export function Header(): React.ReactElement {
               </Link>
             </div>
             <div className="mx-2">
-              <Link to="/basket">
+              <Link to="/card">
                 <FaShoppingBasket className="text-dark" />
               </Link>
             </div>

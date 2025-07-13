@@ -1,13 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import type { JwtType } from '../../types'
-import { jwt } from '../../utils/jwt'
 import { requestRefresh } from '../../services/auth'
+import { jwt } from '../../utils/jwt'
 
 export const fetchRefresh = createAsyncThunk('auth/fetchRefresh', async (body: Pick<JwtType, 'refresh'>) => {
   const data = await requestRefresh(body)
   let newJwt = null
 
-  // Save JWT
   if (data) {
     newJwt = {
       refresh: body.refresh,
@@ -23,7 +22,7 @@ export const fetchRefresh = createAsyncThunk('auth/fetchRefresh', async (body: P
 export const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    jwt: jwt.getFromLocalStorage(),
+    // jwt: jwt.getFromLocalStorage(),
     isLoading: false,
     error: null
   },

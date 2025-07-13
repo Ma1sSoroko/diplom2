@@ -1,5 +1,5 @@
-import { locales } from '../../config/locales'
-import { useAppSelector } from '../../redux/showModals/store'
+import { locales } from '../../config'
+import { useAppSelector } from '../../redux/store'
 
 export function Footer({ container: Container }: { container: React.ComponentType<{ children: React.ReactNode }> }): React.ReactElement {
   const lang = useAppSelector(state => state.lang.lang)

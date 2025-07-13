@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { useOutletContext } from 'react-router'
-import { locales } from '../config/locales'
+import { locales } from '../config'
 import type { TitleContextType } from '../types'
-import { useAppSelector, useAppDispatch } from '../redux/showModals/store'
+import { useAppSelector, useAppDispatch } from '../redux/store'
 import { fetchBooks } from '../redux/booksSlice'
 import { BookDelFavorite } from '../components/bookDelFavorite/BookDelFavorite'
 

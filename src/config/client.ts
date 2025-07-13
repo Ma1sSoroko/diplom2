@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { authRefreshEndpoint, baseUrl } from './api'
-import { jwt } from '../../utils/jwt'
-import { store } from '../../redux/showModals/store'
-import type { JwtType } from '../../types'
-import { fetchRefresh } from '../../redux/auth/authSlice'
+import { jwt } from '../utils/jwt'
+import { store } from '../redux/store'
+import type { JwtType } from '../types'
+import { fetchRefresh } from '../redux/auth/authSlice'
 
 const client = axios.create({
     baseURL: baseUrl
@@ -14,7 +14,7 @@ client.interceptors.request.use(async function (config) {
       return config
     }
   
-    let token = store.getState().auth.jwt
+    let token = store.getState().auth.token
   
     if (token) {
       if (jwt.isTokenExpired(token.access)) {

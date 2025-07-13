@@ -88,7 +88,7 @@ export const booksSlice = createSlice({
                 state.basket = state.basket.filter(book => book.isbn13 !== action.payload.isbn13)
                 state.isLoading = false
             })
-            .addCase(order.fulfilled, (state, action: PayloadAction<Book[]>) => {
+            .addCase(order.fulfilled, (state) => {
                 state.basket = []
                 state.isLoading = false
             })

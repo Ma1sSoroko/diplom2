@@ -1,6 +1,6 @@
 import type { Book, BooksParamsType, BooksResponseType } from '../types'
-import { baseUrl, booksEndpoint, bookEndpoint, favoriteBooksEndpoint } from '../config/locales/api'
-import { get } from '../config/locales/client'
+import { baseUrl, booksEndpoint, bookEndpoint, favoriteBooksEndpoint } from '../config/api'
+import { get } from '../config/client'
 
 export async function requestBooks(params?: BooksParamsType): Promise<BooksResponseType | void> {
     try {

@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import { useAppDispatch } from '../../redux/showModals/store'
+import { useAppDispatch } from '../../redux/store'
 import { removeFavoriteBook } from '../../redux/booksSlice'
 import type { Book } from '../../types'
 import { FaRegBookmark } from 'react-icons/fa'

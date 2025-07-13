@@ -1,5 +1,5 @@
-import { post } from '../config/locales/client'
-import { baseUrl, booksEndpoint } from '../config/locales/api'
+import { post } from '../config/client'
+import { baseUrl, booksEndpoint } from '../config/api'
 import type { JwtType } from '../types'
 
 export async function requestRefresh(body: Pick<JwtType, 'refresh'>): Promise<{ access: string } | void> {

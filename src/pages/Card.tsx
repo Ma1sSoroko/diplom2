@@ -1,12 +1,12 @@
 import { useEffect } from 'react'
 import { useOutletContext } from 'react-router'
-import { locales } from '../config/locales'
+import { locales } from '../config'
 import type { TitleContextType } from '../types'
-import { useAppSelector, useAppDispatch } from '../redux/showModals/store'
+import { useAppSelector, useAppDispatch } from '../redux/store'
 import { fetchBooks, order } from '../redux/booksSlice'
-import { BookBasket } from '../components/bookBasket/BookBasket'
+import { BookForCard } from '../components/bookForCard/BookForCard'
 
-export function Basket(): React.ReactElement {
+export function Card(): React.ReactElement {
     const dispatch = useAppDispatch()
     const lang = useAppSelector(state => state.lang.lang)
     const basket = useAppSelector(state => state.books.basket)
@@ -31,7 +31,7 @@ export function Basket(): React.ReactElement {
             <div className="d-flex flex-wrap gap-3 justify-content-center mb-5">
                 {basket.map(book => {
                     if (!book.title || !book.image) return null;
-                    return <BookBasket key={book.isbn13} {...book} />;
+                    return <BookForCard key={book.isbn13} {...book} />;
                 })}
             </div>
             <div className="w-75 d-flex flex-column align-items-end justify-content-center">

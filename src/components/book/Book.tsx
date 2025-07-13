@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import { useAppDispatch } from '../../redux/showModals/store'
+import { useAppDispatch } from '../../redux/store'
 import { addBasket, addFavoriteBook } from '../../redux/booksSlice'
 import type { Book } from '../../types'
 import { FaBookmark, FaShoppingBasket } from 'react-icons/fa'

@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { langReducer } from '../lang/langSlice'
+import { langReducer } from './lang/langSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { booksReducer } from '../booksSlice'
-import { authReducer } from '../auth/authSlice'
-import { bookReducer } from '../bookSlice'
+import { booksReducer } from './booksSlice'
+import { authReducer } from './auth/authSlice'
+import { bookReducer } from './bookSlice'
 
 export const store = configureStore({
   reducer: {

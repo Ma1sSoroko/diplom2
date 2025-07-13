@@ -3,7 +3,14 @@ import type { JwtType } from '../types'
 
 const JWT_KEY = 'jwt'
 
-export const jwt = {
+interface JwtUtils {
+  getFromLocalStorage(): JwtType | null
+  setToLocalStorage(jwt: JwtType): void
+  clearJwt(): void
+  isTokenExpired(access: string): boolean
+}
+
+export const jwt: JwtUtils = {
   getFromLocalStorage (): JwtType | null {
     const jwt = localStorage.getItem(JWT_KEY)
 
@@ -25,6 +32,6 @@ export const jwt = {
   isTokenExpired (access: string): boolean {
     const { exp } = jwtDecode(access)
 
-    return Date.now() >= exp * 1000
+    return Date.now() >= (exp || 0) * 1000
   }
 }

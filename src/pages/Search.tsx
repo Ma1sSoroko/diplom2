@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { useOutletContext, useParams } from 'react-router'
-import { locales } from '../config/locales'
+import { locales } from '../config'
 import type { TitleContextType } from '../types'
-import { useAppSelector } from '../redux/showModals/store'
+import { useAppSelector } from '../redux/store'
 import { AllBooks } from './AllBooks'
 
 export function Search(): React.ReactElement {

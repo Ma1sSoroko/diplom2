@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { Input } from '../input/Input'
-import { locales } from '../../config/locales'
-import { useAppSelector } from '../../redux/showModals/store'
+import { locales } from '../../config'
+import { useAppSelector } from '../../redux/store'
 
-export function SearchForm() {
+export function SearchForm(): React.ReactElement {
   const lang = useAppSelector(state => state.lang.lang)
   const { query } = useParams<{ query: string }>()
   const navigate = useNavigate()

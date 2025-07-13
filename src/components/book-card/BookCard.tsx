@@ -1,6 +1,8 @@
-import { addBasket } from "../../redux/booksSlice"
-import { useAppDispatch } from "../../redux/showModals/store"
-export function BookCard(props: { title: string, subtitle: string, authors: string, publisher: string, pages: string, year: string, rating: string, desc: string, price: string, image: string }) {
+import { addBasket } from '../../redux/booksSlice'
+import { useAppDispatch } from '../../redux/store'
+import type { Book } from '../../types'
+
+export function BookCard(props: Book): React.ReactElement {
     const { title, subtitle, authors, publisher, pages, year, rating, desc, price, image } = props
     const dispatch = useAppDispatch()
 

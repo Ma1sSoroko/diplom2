@@ -1,9 +1,9 @@
-import { useParams } from "react-router"
-import { useState, useEffect } from "react"
-import { Container } from "../components/container/Container"
-import type { Book } from "../types"
-import { BookCard } from "../components/book-card/BookCard"
-import { Loader } from "../components/loader/Loader"
+import { useParams } from 'react-router'
+import { useState, useEffect } from 'react'
+import { Container } from '../components/container/Container'
+import type { Book } from '../types'
+import { BookCard } from '../components/book-card/BookCard'
+import { Loader } from '../components/loader/Loader'
 
 export function BookPage(): React.ReactElement {
     const [book, setBook] = useState<Book | null>(null)
@@ -31,18 +31,7 @@ export function BookPage(): React.ReactElement {
 
     return (
         <Container>
-            <BookCard 
-                title={book.title}
-                subtitle={book.subtitle}
-                authors={book.authors}
-                publisher={book.publisher}
-                pages={book.pages.toString()}
-                year={book.year.toString()}
-                rating={book.rating.toString()}
-                desc={book.desc}
-                price={book.price}
-                image={book.image}
-            />
+            <BookCard {...book} />
         </Container>
     )
 }

@@ -1,9 +1,10 @@
-import { Link } from "react-router"
-import { Counter } from "../counter/Counter"
-import { useAppDispatch } from "../../redux/showModals/store"
-import { removeBasket } from "../../redux/booksSlice"
+import { Link } from 'react-router'
+import { Counter } from '../counter/Counter'
+import { useAppDispatch } from '../../redux/store'
+import { removeBasket } from '../../redux/booksSlice'
+import type { Book } from '../../types'
 
-export function BookBasket(props: { title: string, image: string, isbn13: string, price: string }) {
+export function BookForCard(props: Book): React.ReactElement {
     const { title, image, isbn13, price } = props
     const dispatch = useAppDispatch()
 

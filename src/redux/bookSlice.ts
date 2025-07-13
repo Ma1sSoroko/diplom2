@@ -2,8 +2,12 @@ import { createSlice, type PayloadAction, createAsyncThunk } from '@reduxjs/tool
 import type { BookStateType, Book } from '../types'
 import { requestBook } from '../services/books'
 
-export const fetchBook = createAsyncThunk('book/fetchBook', async (isbn13: string) => {
+export const fetchBook = createAsyncThunk<Book, string>('book/fetchBook', async (isbn13: string) => {
   const data = await requestBook(isbn13)
+  
+  if (!data) {
+    throw new Error('Failed to fetch book')
+  }
 
   return data
 })
