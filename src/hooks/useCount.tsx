@@ -2,7 +2,6 @@ import { useState } from 'react'
 
 export function useCount (initValue = 0) {
   const [count, setCount] = useState(initValue)
-
   const increment = () => {
     setCount(count + 1)
   }
@@ -10,6 +9,7 @@ export function useCount (initValue = 0) {
   const decrement = () => {
     if (count > 1) {
       setCount(count - 1)
+
     }
     else {
       setCount(1)

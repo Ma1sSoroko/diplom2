@@ -7,7 +7,7 @@ import type { Book } from '../../types'
 export function BookForCard(props: Book): React.ReactElement {
     const { title, image, isbn13, price } = props
     const dispatch = useAppDispatch()
-
+    
     function handleClickRemoveFromBasket() {
         dispatch(removeBasket(props))
     }
@@ -25,7 +25,7 @@ export function BookForCard(props: Book): React.ReactElement {
                 </Link>
                 <div className="d-flex justify-content-between w-50">
                     <Counter />
-                    <div className="d-flex align-items-center justify-content-center">{price}</div>
+                    <div className="d-flex align-items-center justify-content-center">{Number(price.slice(1, 10))}</div>
                     <button className="btn" onClick={handleClickRemoveFromBasket}>Удалить</button>
                 </div>
             </div>

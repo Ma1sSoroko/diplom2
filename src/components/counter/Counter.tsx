@@ -1,6 +1,7 @@
 import { FaMinus, FaPlus } from 'react-icons/fa'
 import { useCount } from '../../hooks/useCount'
 
+
 export function Counter(): React.ReactElement {
     const { count, increment, decrement } = useCount(1)
 
