@@ -1,6 +1,6 @@
-import React, { forwardRef } from 'react'
+import React from 'react'
 
-type InputType = 'text' | 'email' | 'password' | 'textarea' | 'checkbox' | 'number'
+type InputType = 'search'
 interface InputProps {
     type: InputType
     id?: string
@@ -14,40 +14,11 @@ interface InputProps {
     onChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
 }
 
-export function InputBase(props: InputProps, ref: React.ForwardedRef<HTMLInputElement | HTMLTextAreaElement>): React.ReactElement {
-    const { type, id, label, name, checked, placeholder, className, value, onChange, rows } = props
-
-    const renderLabel = (): React.ReactElement | null => {
-        if (!label) return null
-
-        return (
-            <label className="form-check-label" htmlFor={id}>{label}</label>
-        )
-    }
-
-    if (type === 'textarea') {
-        return (
-            <>
-                {renderLabel()}
-                <textarea
-                    ref={ref}
-                    id={id}
-                    name={name}
-                    placeholder={placeholder}
-                    className={className || 'form-control'}
-                    value={value}
-                    onChange={onChange}
-                    rows={rows || 3}
-                />
-            </>
-        )
-    }
+export function InputBase(props: InputProps): React.ReactElement {
+    const { type, id, name, checked, placeholder, className, value, onChange } = props
 
     return (
-        <>
-            {renderLabel()}
             <input
-                ref={ref}
                 type={type}
                 id={id}
                 name={name}
@@ -57,8 +28,7 @@ export function InputBase(props: InputProps, ref: React.ForwardedRef<HTMLInputEl
                 value={value}
                 onChange={onChange}
             />
-        </>
     )
 }
 
-export const Input = forwardRef(InputBase)
+export const Input = InputBase

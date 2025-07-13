@@ -17,8 +17,7 @@ const initialState: BookStateType = {
 export const bookSlice = createSlice({
   name: 'book',
   initialState,
-  reducers: {
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchBook.pending, (state) => {

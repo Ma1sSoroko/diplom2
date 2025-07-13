@@ -30,7 +30,6 @@ export function Header(): React.ReactElement {
           </div>
           <div className="d-flex align-items-center">
             <div className="mx-2">
-            {/* <NavLink className={buildClassName} to="/posts/favorite">My favorites</NavLink> */}
               <Link to="/books/favorite">
                 <FaBookmark className="text-dark" />
               </Link>

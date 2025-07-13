@@ -1,7 +1,5 @@
 export type LangType = 'en' | 'ru'
 
-export type OrderingType = 'title' | 'price'
-
 export interface LangContextType {
   lang: LangType
   setLang: (lang: LangType) => void
@@ -10,11 +8,6 @@ export interface LangContextType {
 export interface TitleContextType {
   title: string
   setTitle: (title: string) => void
-}
-
-export interface OrderingContextType {
-  ordering: OrderingType
-  setOrdering: (ordering: OrderingType) => void
 }
 
 export interface Book {
@@ -42,31 +35,18 @@ export type LangSlice = {
   lang: LangType
 }
 
-export type OrderingSlice = {
-  ordering: OrderingType
-}
-
 export type BooksStateType = {
   books: Book[] | null,
   error: string | null,
   isLoading: boolean,
   favoriteBooks: Book[],
-  ordering: OrderingType
-}
-
-export type BooksMyStateType = {
-  books: Book[] | null,
-  error: string | null,
-  isLoading: boolean,
-  limit: number,
-  total: number
 }
 
 export type BooksParamsType = {
   limit?: number
   offset?: number
-  ordering?: string
   search?: string
+  query?: string
 }
 
 export type BooksResponseType = {

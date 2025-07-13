@@ -2,16 +2,16 @@ import { useEffect } from 'react'
 import { useParams, NavLink, useOutletContext } from 'react-router'
 import { Book } from '../components/book/Book'
 import { locales } from '../config/locales'
-import type { TitleContextType, OrderingType } from '../types'
+import type { TitleContextType } from '../types'
 import { useAppSelector, useAppDispatch } from '../redux/showModals/store'
-import { fetchBooks, setOrdering } from '../redux/booksSlice'
+import { fetchBooks } from '../redux/booksSlice'
 import { buildSchemePagination } from '../utils/buildPagination'
 
 export function AllBooks(): React.ReactElement {
     const { currentPage = 1, query } = useParams()
     const dispatch = useAppDispatch()
     const lang = useAppSelector(state => state.lang.lang)
-    const { books, isLoading, error, ordering } = useAppSelector(state => state.books)
+    const { books, isLoading, error } = useAppSelector(state => state.books)
     const { setTitle } = useOutletContext<TitleContextType>()
     const total = books?.length || 0
 
@@ -21,10 +21,6 @@ export function AllBooks(): React.ReactElement {
     }, [dispatch, currentPage, query])
 
     useEffect(() => { setTitle(locales[lang].allBooks.title) }, [lang])
-
-    useEffect(() => {
-        dispatch(setOrdering(ordering as OrderingType))
-    }, [dispatch, ordering])
 
     if (isLoading) {
         return <div>{locales[lang].allBooks.loading}</div>
@@ -57,22 +53,8 @@ export function AllBooks(): React.ReactElement {
         )
     }
 
-    function handleChangeOrdering(event: React.ChangeEvent<HTMLSelectElement>) {
-        dispatch(setOrdering(event.target.value as OrderingType))
-        dispatch(fetchBooks({ ordering: event.target.value as OrderingType }))
-        console.log(event.target.value);
-    }
-
     return (
         <div>
-            <div className="navbar navbar-expand-lg">
-                <div className="nav nav-tabs">
-                    <select className="form-select" onChange={handleChangeOrdering} value={ordering}>
-                        <option value="title">По названию</option>
-                        <option value="price">По цене</option>
-                    </select>
-                </div>
-            </div>
             {renderPagination()}
             <div className="d-flex flex-wrap gap-3 justify-content-center">
                 {books && books.map(book => (

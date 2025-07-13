@@ -10,7 +10,6 @@ export function BookDelFavorite(props: Book): React.ReactElement {
 
     function handleClickRemoveFromFavorite() {
         dispatch(removeFavoriteBook(props))
-        console.log(removeFavoriteBook)
     }
 
     return (

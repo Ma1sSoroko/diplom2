@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit'
-import type { Book, BooksStateType, BooksParamsType, BooksResponseType, OrderingType } from '../types'
+import type { Book, BooksStateType, BooksParamsType, BooksResponseType } from '../types'
 import { requestBooks } from '../services/books'
 
 type RootState = {
@@ -8,12 +8,10 @@ type RootState = {
 
 export const fetchBooks = createAsyncThunk<BooksResponseType, BooksParamsType, { state: RootState }>(
     'books/fetchBooks',
-    async (params: BooksParamsType = {}, { getState }) => {
+    async (params: BooksParamsType = {}) => {
         const { limit = 20, offset = 0 } = params
-        const ordering = getState().books.ordering
-        console.log(ordering);
 
-        const data = await requestBooks({ limit, offset, ordering })
+        const data = await requestBooks({...params, limit, offset })
         return data as BooksResponseType
     }
 )
@@ -35,17 +33,12 @@ const initialState: BooksStateType = {
     error: null,
     isLoading: false,
     favoriteBooks: [],
-    ordering: 'title'
 }
 
 export const booksSlice = createSlice({
     name: 'books',
     initialState,
-    reducers: {
-        setOrdering: (state, action: PayloadAction<OrderingType>) => {
-            state.ordering = action.payload
-        }
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(fetchBooks.pending, (state) => {
@@ -71,4 +64,3 @@ export const booksSlice = createSlice({
 })
 
 export const booksReducer = booksSlice.reducer
-export const { setOrdering } = booksSlice.actions

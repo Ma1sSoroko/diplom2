@@ -10,7 +10,6 @@ export function Book(props: Book): React.ReactElement {
 
     function handleClickAddToFavorite() {
         dispatch(addFavoriteBook(props))
-        console.log(addFavoriteBook)
     }
 
     return (

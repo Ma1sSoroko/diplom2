@@ -1,11 +1,11 @@
 import { createBrowserRouter, Navigate } from 'react-router'
 import { Layout } from './components/layout/Layout'
-// import { Search } from './pages/Search'
-// import { ListOfBooks } from './components/listOfBooks/ListOfBooks'
+import { Search } from './pages/Search'
 import { AllBooks } from './pages/AllBooks'
 import { FavoriteBooks } from './pages/FavoriteBooks'
 import type { RouteObject } from 'react-router'
 import { BookPage } from './pages/Book'
+
 
 const routes: RouteObject[] = [
     {
@@ -13,7 +13,7 @@ const routes: RouteObject[] = [
         children: [
             {
                 path: '/',
-                element: <AllBooks />,
+                element: <Navigate to="/books/all/1" />
             },
             {
                 path: '/book/:isbn13',
@@ -28,14 +28,14 @@ const routes: RouteObject[] = [
                 path: '/books/favorite',
                 element: <FavoriteBooks />,
             },
-            // {
-            //     path: '/books/search/:query/:currentPage',
-            //     element: <Search />,
-            // },
-            // {
-            //     path: '/search',
-            //     element: <Search />,
-            // }
+            {
+                path: 'books/search/:query',
+                element: <Search />,    
+            },
+            {
+                path: '/books/search/:query/:currentPage',
+                element: <Search />,
+            },
         ],
     },
 ]
