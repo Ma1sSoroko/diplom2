@@ -2,6 +2,7 @@ import type { Book, BooksParamsType, BooksResponseType } from '../types'
 import { baseUrl, booksEndpoint, bookEndpoint, favoriteBooksEndpoint, cardEndpoint } from '../config/api'
 import { get } from '../config/client'
 
+// Запрос книг
 export async function requestBooks(params?: BooksParamsType): Promise<BooksResponseType | void> {
     try {
         const response = await get(baseUrl + booksEndpoint, { params })
@@ -14,6 +15,7 @@ export async function requestBooks(params?: BooksParamsType): Promise<BooksRespo
     }
 }
 
+// Запрос конкретной книги
 export async function requestBook(isbn13: string): Promise<Book | void> {
     try {
         const response = await get(baseUrl + bookEndpoint + '/' + isbn13)
@@ -26,6 +28,7 @@ export async function requestBook(isbn13: string): Promise<Book | void> {
     }
 }
 
+// Запрос избранных книг
 export async function requestFavoriteBooks(params?: BooksParamsType): Promise<Book[] | void> {
     try {
         const response = await get(baseUrl + favoriteBooksEndpoint, { params })
@@ -38,6 +41,7 @@ export async function requestFavoriteBooks(params?: BooksParamsType): Promise<Bo
     }
 }
 
+// Запрос корзины
 export async function requestCard(): Promise<Book[] | void> {
     try {
         const response = await get(baseUrl + cardEndpoint)

@@ -7,6 +7,7 @@ export const fetchRefresh = createAsyncThunk('auth/fetchRefresh', async (body: P
   const data = await requestRefresh(body)
   let newJwt = null
 
+  // Обновление JWT
   if (data) {
     newJwt = {
       refresh: body.refresh,

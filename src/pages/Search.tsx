@@ -10,8 +10,10 @@ export function Search(): React.ReactElement {
     const { setTitle } = useOutletContext<TitleContextType>()
     const { query } = useParams<{ query: string }>()
 
+    // Установка заголовка страницы
     useEffect(() => { setTitle(locales[lang].search.title) }, [lang])
 
+    // Установка заголовка страницы с результатом поиска
     useEffect(() => {
         setTitle(`${locales[lang].search.result} «${query}»`)
     
@@ -20,6 +22,7 @@ export function Search(): React.ReactElement {
         }
       }, [setTitle, query])
 
+    // Отображение книг
     return (
             <div>
                 <AllBooks />

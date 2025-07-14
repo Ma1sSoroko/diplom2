@@ -4,6 +4,8 @@ import { useAppDispatch } from '../../redux/store'
 import { removeCard } from '../../redux/booksSlice'
 import type { Book } from '../../types'
 import { FaTrash } from 'react-icons/fa'
+
+// Книга для корзины
 export function BookForCard(props: Book): React.ReactElement {
     const { title, image, isbn13, price } = props
     const dispatch = useAppDispatch()

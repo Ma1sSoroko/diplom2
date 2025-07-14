@@ -12,16 +12,19 @@ export function FavoriteBooks(): React.ReactElement {
     const favoriteBooks = useAppSelector(state => state.books.favoriteBooks)
     const { setTitle } = useOutletContext<TitleContextType>()
 
+    // Получение книг из избранного
     useEffect(() => {
         dispatch(fetchBooks({}))
     }, [dispatch])
 
+    // Установка заголовка страницы
     useEffect(() => { setTitle(locales[lang].favoriteBooks.title) }, [lang])
 
     if (favoriteBooks.length == 0) {
         return <div>{locales[lang].favoriteBooks.empty}</div>
     }
 
+    // Отображение книг в избранном
     return (
         <div className="d-flex flex-wrap gap-3 justify-content-center">
             {favoriteBooks.map(book => {

@@ -2,6 +2,7 @@ import { FaMinus, FaPlus } from 'react-icons/fa'
 import { useCount } from '../../hooks/useCount'
 import { useTotalPrice } from '../../hooks/useTotalPrice'
 
+// Счетчик количества книг в корзине
 export function Counter(props: { price: string }): React.ReactElement {
     const { price } = props
     const { count, increment, decrement } = useCount(1)

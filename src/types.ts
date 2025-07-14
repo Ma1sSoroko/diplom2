@@ -42,6 +42,7 @@ export type BooksStateType = {
   favoriteBooks: Book[],
   card: Book[],
   query: string,
+  total: number,
 }
 
 export type BooksParamsType = {

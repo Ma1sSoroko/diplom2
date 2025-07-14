@@ -5,6 +5,7 @@ import { requestBook } from '../services/books'
 export const fetchBook = createAsyncThunk<Book, string>('book/fetchBook', async (isbn13: string) => {
   const data = await requestBook(isbn13)
   
+  // Проверка на ошибку
   if (!data) {
     throw new Error('Failed to fetch book')
   }
@@ -12,12 +13,14 @@ export const fetchBook = createAsyncThunk<Book, string>('book/fetchBook', async 
   return data
 })
 
+// Инициализация состояния
 const initialState: BookStateType = {
   data: null,
   isLoading: false,
   error: null,
 }
 
+// Создание слайса
 export const bookSlice = createSlice({
   name: 'book',
   initialState,

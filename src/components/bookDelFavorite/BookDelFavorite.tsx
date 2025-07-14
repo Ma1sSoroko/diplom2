@@ -6,6 +6,7 @@ import { FaRegBookmark, FaShoppingBasket } from 'react-icons/fa'
 import { locales } from '../../config'
 import { addCard } from '../../redux/booksSlice'
 
+// Книга для удаления из избранного
 export function BookDelFavorite(props: Book): React.ReactElement {
     const { title, price, image, isbn13 } = props
     const dispatch = useAppDispatch()

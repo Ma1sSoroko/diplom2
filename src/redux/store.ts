@@ -5,6 +5,7 @@ import { booksReducer } from './booksSlice'
 import { authReducer } from './auth/authSlice'
 import { bookReducer } from './bookSlice'
 
+// Создание хранилища
 export const store = configureStore({
   reducer: {
     lang: langReducer,

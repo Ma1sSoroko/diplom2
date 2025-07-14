@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/store'
 import type { Book, TitleContextType } from '../../types'
 import { useOutletContext } from 'react-router'
 
+// Карточка книги
 export function BookCard(props: Book): React.ReactElement {
     const { title, subtitle, authors, publisher, pages, year, rating, desc, price, image } = props
     const dispatch = useAppDispatch()

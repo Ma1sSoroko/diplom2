@@ -6,6 +6,7 @@ import { Main } from '../main/Main'
 import { Container } from '../container/Container'
 import { Footer } from '../footer/Footer'
 
+// Шаблон страницы
 export function Layout(): React.ReactElement {
   const [title, setTitle] = useState<string>('')
 

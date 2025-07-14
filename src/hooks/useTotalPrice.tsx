@@ -1,3 +1,4 @@
+// Хук для расчета общей стоимости конкретной книги
 export function useTotalPrice(count: number, price: string): number {
     const totalPrice = count * Number(price.slice(1, 10))
 

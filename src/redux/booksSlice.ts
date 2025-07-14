@@ -2,10 +2,12 @@ import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/tool
 import type { Book, BooksStateType, BooksParamsType, BooksResponseType } from '../types'
 import { requestBooks } from '../services/books'
 
+// Тип состояния корзины
 type RootState = {
     books: BooksStateType
 }
 
+// Запрос книг
 export const fetchBooks = createAsyncThunk<BooksResponseType, BooksParamsType, { state: RootState }>(
     'books/fetchBooks',
     async (params: BooksParamsType = {}) => {
@@ -16,17 +18,20 @@ export const fetchBooks = createAsyncThunk<BooksResponseType, BooksParamsType, {
     }
 )
 
+// Добавление книги в избранное
 export const addFavoriteBook = createAsyncThunk<Book, Book, { rejectValue: string }>(
     'books/addFavoriteBook', async (book) => {
         return book
     }
 )
 
+// Удаление книги из избранного
 export const removeFavoriteBook = createAsyncThunk<Book, Book, { rejectValue: string }>(
     'books/removeFavoriteBook', async (book) => {
         return book
     }
 )
+
 
 export const addCard = createAsyncThunk<Book, Book, { rejectValue: string }>(
     'books/addCard', async (book) => {
@@ -34,11 +39,13 @@ export const addCard = createAsyncThunk<Book, Book, { rejectValue: string }>(
     }
 )
 
+
 export const removeCard = createAsyncThunk<Book, Book, { rejectValue: string }>(
     'books/removeCard', async (book) => {
         return book
     }
 )
+
 
 export const order = createAsyncThunk<Book[], Book[], { rejectValue: string }>(
     'books/order', async (books) => {
@@ -46,6 +53,7 @@ export const order = createAsyncThunk<Book[], Book[], { rejectValue: string }>(
     }
 )
 
+// Инициализация состояния
 const initialState: BooksStateType = {
     books: null,
     error: null,
@@ -53,8 +61,10 @@ const initialState: BooksStateType = {
     favoriteBooks: [],
     card: [],
     query: '',
+    total: 0,
 }
 
+// Создание слайса
 export const booksSlice = createSlice({
     name: 'books',
     initialState,
@@ -63,20 +73,19 @@ export const booksSlice = createSlice({
         builder
             .addCase(fetchBooks.pending, (state) => {
                 state.isLoading = true
-                state.books = JSON.parse(localStorage.getItem('books') || '[]')
                 state.favoriteBooks = JSON.parse(localStorage.getItem('favoriteBooks') || '[]')
                 state.card = JSON.parse(localStorage.getItem('card') || '[]')
             })
             .addCase(fetchBooks.rejected, (state, action) => {
                 state.error = action.error.message || null
                 state.isLoading = false
-                state.books = JSON.parse(localStorage.getItem('books') || '[]')
                 state.favoriteBooks = JSON.parse(localStorage.getItem('favoriteBooks') || '[]')
                 state.card = JSON.parse(localStorage.getItem('card') || '[]')
             })
             .addCase(fetchBooks.fulfilled, (state, action: PayloadAction<BooksResponseType>) => {
                 state.books = action.payload.books
                 state.isLoading = false
+                state.total = action.payload.count
                 localStorage.setItem('books', JSON.stringify(state.books))
                 localStorage.setItem('favoriteBooks', JSON.stringify(state.favoriteBooks))
                 localStorage.setItem('card', JSON.stringify(state.card))

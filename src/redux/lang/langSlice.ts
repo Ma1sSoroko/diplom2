@@ -1,11 +1,12 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import type { LangSlice, LangType } from '../../types'
 
-
+// Инициализация состояния
 const initialState: LangSlice = {
     lang: 'en'
 }
 
+// Создание слайса
 export const langSlice = createSlice({
     name: 'lang',
     initialState,
