@@ -1,13 +1,20 @@
-import { addBasket } from '../../redux/booksSlice'
-import { useAppDispatch } from '../../redux/store'
-import type { Book } from '../../types'
+import { useEffect } from 'react'
+import { locales } from '../../config'
+import { addCard } from '../../redux/booksSlice'
+import { useAppDispatch, useAppSelector } from '../../redux/store'
+import type { Book, TitleContextType } from '../../types'
+import { useOutletContext } from 'react-router'
 
 export function BookCard(props: Book): React.ReactElement {
     const { title, subtitle, authors, publisher, pages, year, rating, desc, price, image } = props
     const dispatch = useAppDispatch()
+    const lang = useAppSelector(state => state.lang.lang)
+    const { setTitle } = useOutletContext<TitleContextType>()
 
-    function handleClickAddToBasket() {
-        dispatch(addBasket(props))
+    useEffect(() => { setTitle(locales[lang].book.title) }, [lang])
+
+    function handleClickAddToCard() {
+        dispatch(addCard(props))
     }
 
     return (
@@ -50,7 +57,7 @@ export function BookCard(props: Book): React.ReactElement {
                             </div>
                         </div>
                         <div>
-                            <button className="btn btn-dark" onClick={handleClickAddToBasket}>Добавить в корзину</button>
+                            <button className="btn btn-dark" onClick={handleClickAddToCard}>{locales[lang].book.addToCard}</button>
                         </div>
                     </div>
                 </div>

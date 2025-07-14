@@ -1,15 +1,15 @@
 import { Link } from 'react-router'
 import { Counter } from '../counter/Counter'
 import { useAppDispatch } from '../../redux/store'
-import { removeBasket } from '../../redux/booksSlice'
+import { removeCard } from '../../redux/booksSlice'
 import type { Book } from '../../types'
-
+import { FaTrash } from 'react-icons/fa'
 export function BookForCard(props: Book): React.ReactElement {
     const { title, image, isbn13, price } = props
     const dispatch = useAppDispatch()
     
-    function handleClickRemoveFromBasket() {
-        dispatch(removeBasket(props))
+    function handleClickRemoveFromCard() {
+        dispatch(removeCard(props))
     }
 
     return (
@@ -24,9 +24,10 @@ export function BookForCard(props: Book): React.ReactElement {
                     </div>
                 </Link>
                 <div className="d-flex justify-content-between w-50">
-                    <Counter />
-                    <div className="d-flex align-items-center justify-content-center">{Number(price.slice(1, 10))}</div>
-                    <button className="btn" onClick={handleClickRemoveFromBasket}>Удалить</button>
+                    <Counter price={price} />
+                    <button className="btn" onClick={handleClickRemoveFromCard}>
+                        <FaTrash />
+                    </button>
                 </div>
             </div>
         </>

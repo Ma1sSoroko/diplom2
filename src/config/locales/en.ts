@@ -18,9 +18,15 @@ export const en: { [key: string]: { [key: string]: string } } = {
         placeholder: 'Search',
         result: 'Search results for',
     },
-    basket: {
-        title: 'Basket',
-        empty: 'No books in basket',
+    card: {
+        title: 'Card',
+        empty: 'No books in card',
         order: 'Order',
+        total: 'Total price',
+    },
+    book: {
+        title: 'Book',
+        addToCard: 'Add to card',
+        more: 'More',
     },
 }

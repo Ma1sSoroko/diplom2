@@ -1,19 +1,21 @@
 import { Link } from 'react-router'
-import { useAppDispatch } from '../../redux/store'
-import { addBasket, addFavoriteBook } from '../../redux/booksSlice'
+import { useAppDispatch, useAppSelector } from '../../redux/store'
+import { addCard, addFavoriteBook } from '../../redux/booksSlice'
 import type { Book } from '../../types'
 import { FaBookmark, FaShoppingBasket } from 'react-icons/fa'
+import { locales } from '../../config'
 
 export function Book(props: Book): React.ReactElement {
     const { title, price, image, isbn13 } = props
     const dispatch = useAppDispatch()
-
+    const lang = useAppSelector(state => state.lang.lang)
+    
     function handleClickAddToFavorite() {
         dispatch(addFavoriteBook(props))
     }
 
-    function handleClickAddToBasket() {
-        dispatch(addBasket(props))
+    function handleClickAddToCard() {
+        dispatch(addCard(props))
     }
 
     return (
@@ -27,12 +29,12 @@ export function Book(props: Book): React.ReactElement {
                     <p className="card-text font-size-14">{price}</p>
                 </div>
                 <div className="d-flex justify-content-between flex-end">
-                    <Link to={`/book/${isbn13}`} className="btn">More</Link>
+                    <Link to={`/book/${isbn13}`} className="btn">{locales[lang].book.more}</Link>
                     <div>
                         <div className="btn mb-2" onClick={handleClickAddToFavorite}>
                             <FaBookmark className="text-dark" />
                         </div>
-                        <div className="btn mb-2" onClick={handleClickAddToBasket}>
+                        <div className="btn mb-2" onClick={handleClickAddToCard}>
                             <FaShoppingBasket className="text-dark" />
                         </div>
                     </div>

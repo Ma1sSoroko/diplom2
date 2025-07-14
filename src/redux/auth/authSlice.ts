@@ -22,9 +22,9 @@ export const fetchRefresh = createAsyncThunk('auth/fetchRefresh', async (body: P
 export const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    // jwt: jwt.getFromLocalStorage(),
+    jwt: jwt.getFromLocalStorage(),
     isLoading: false,
-    error: null
+    error: null as string | null
   },
   reducers: {},
   extraReducers: (builder) => {

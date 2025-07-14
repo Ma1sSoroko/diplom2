@@ -18,9 +18,15 @@ export const ru: { [key: string]: { [key: string]: string } } = {
         placeholder: 'Поиск',
         result: 'Результаты поиска для',
     },
-    basket: {
+    card: {
         title: 'Корзина',
         empty: 'В корзине нет книг',
         order: 'Оформить заказ',
+        total: 'Сумма заказа',
+    },
+    book: {
+        title: 'Книга',
+        addToCard: 'Добавить в корзину',
+        more: 'Подробнее',
     },
 }

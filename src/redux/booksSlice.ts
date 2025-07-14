@@ -28,14 +28,14 @@ export const removeFavoriteBook = createAsyncThunk<Book, Book, { rejectValue: st
     }
 )
 
-export const addBasket = createAsyncThunk<Book, Book, { rejectValue: string }>(
-    'books/addBasket', async (book) => {
+export const addCard = createAsyncThunk<Book, Book, { rejectValue: string }>(
+    'books/addCard', async (book) => {
         return book
     }
 )
 
-export const removeBasket = createAsyncThunk<Book, Book, { rejectValue: string }>(
-    'books/removeBasket', async (book) => {
+export const removeCard = createAsyncThunk<Book, Book, { rejectValue: string }>(
+    'books/removeCard', async (book) => {
         return book
     }
 )
@@ -51,7 +51,7 @@ const initialState: BooksStateType = {
     error: null,
     isLoading: false,
     favoriteBooks: [],
-    basket: [],
+    card: [],
     query: '',
 }
 
@@ -80,16 +80,16 @@ export const booksSlice = createSlice({
                 state.favoriteBooks = state.favoriteBooks.filter(book => book.isbn13 !== action.payload.isbn13)
                 state.isLoading = false
             })
-            .addCase(addBasket.fulfilled, (state, action: PayloadAction<Book>) => {
-                state.basket.push(action.payload)
+            .addCase(addCard.fulfilled, (state, action: PayloadAction<Book>) => {
+                state.card.push(action.payload)
                 state.isLoading = false
             })
-            .addCase(removeBasket.fulfilled, (state, action: PayloadAction<Book>) => {
-                state.basket = state.basket.filter(book => book.isbn13 !== action.payload.isbn13)
+            .addCase(removeCard.fulfilled, (state, action: PayloadAction<Book>) => {
+                state.card = state.card.filter(book => book.isbn13 !== action.payload.isbn13)
                 state.isLoading = false
             })
             .addCase(order.fulfilled, (state) => {
-                state.basket = []
+                state.card = []
                 state.isLoading = false
             })
     }

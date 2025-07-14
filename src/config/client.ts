@@ -14,7 +14,7 @@ client.interceptors.request.use(async function (config) {
       return config
     }
   
-    let token = store.getState().auth.token
+    let token = store.getState().auth.jwt
   
     if (token) {
       if (jwt.isTokenExpired(token.access)) {

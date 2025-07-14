@@ -1,5 +1,5 @@
 import type { Book, BooksParamsType, BooksResponseType } from '../types'
-import { baseUrl, booksEndpoint, bookEndpoint, favoriteBooksEndpoint } from '../config/api'
+import { baseUrl, booksEndpoint, bookEndpoint, favoriteBooksEndpoint, cardEndpoint } from '../config/api'
 import { get } from '../config/client'
 
 export async function requestBooks(params?: BooksParamsType): Promise<BooksResponseType | void> {
@@ -26,9 +26,21 @@ export async function requestBook(isbn13: string): Promise<Book | void> {
     }
 }
 
-export async function requestFavoriteBooks(): Promise<Book[] | void> {
+export async function requestFavoriteBooks(params?: BooksParamsType): Promise<Book[] | void> {
     try {
-        const response = await get(baseUrl + favoriteBooksEndpoint)
+        const response = await get(baseUrl + favoriteBooksEndpoint, { params })
+
+        return response.data
+    } catch (error) {
+        if (error instanceof Error) {
+            console.log('Error', error.message);
+        }
+    }
+}
+
+export async function requestCard(): Promise<Book[] | void> {
+    try {
+        const response = await get(baseUrl + cardEndpoint)
 
         return response.data
     } catch (error) {
