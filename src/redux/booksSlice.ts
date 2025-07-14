@@ -63,34 +63,52 @@ export const booksSlice = createSlice({
         builder
             .addCase(fetchBooks.pending, (state) => {
                 state.isLoading = true
+                state.books = JSON.parse(localStorage.getItem('books') || '[]')
+                state.favoriteBooks = JSON.parse(localStorage.getItem('favoriteBooks') || '[]')
+                state.card = JSON.parse(localStorage.getItem('card') || '[]')
             })
             .addCase(fetchBooks.rejected, (state, action) => {
                 state.error = action.error.message || null
                 state.isLoading = false
+                state.books = JSON.parse(localStorage.getItem('books') || '[]')
+                state.favoriteBooks = JSON.parse(localStorage.getItem('favoriteBooks') || '[]')
+                state.card = JSON.parse(localStorage.getItem('card') || '[]')
             })
             .addCase(fetchBooks.fulfilled, (state, action: PayloadAction<BooksResponseType>) => {
                 state.books = action.payload.books
                 state.isLoading = false
+                localStorage.setItem('books', JSON.stringify(state.books))
+                localStorage.setItem('favoriteBooks', JSON.stringify(state.favoriteBooks))
+                localStorage.setItem('card', JSON.stringify(state.card))
             })
             .addCase(addFavoriteBook.fulfilled, (state, action: PayloadAction<Book>) => {
-                state.favoriteBooks.push(action.payload)
+                if (!state.favoriteBooks.some(book => book.isbn13 === action.payload.isbn13)) {
+                    state.favoriteBooks.push(action.payload)
+                    localStorage.setItem('favoriteBooks', JSON.stringify(state.favoriteBooks))
+                }
                 state.isLoading = false
             })
             .addCase(removeFavoriteBook.fulfilled, (state, action: PayloadAction<Book>) => {
                 state.favoriteBooks = state.favoriteBooks.filter(book => book.isbn13 !== action.payload.isbn13)
                 state.isLoading = false
+                localStorage.setItem('favoriteBooks', JSON.stringify(state.favoriteBooks))
             })
             .addCase(addCard.fulfilled, (state, action: PayloadAction<Book>) => {
-                state.card.push(action.payload)
+                if (!state.card.some(book => book.isbn13 === action.payload.isbn13)) {
+                    state.card.push(action.payload)
+                    localStorage.setItem('card', JSON.stringify(state.card))
+                }
                 state.isLoading = false
             })
             .addCase(removeCard.fulfilled, (state, action: PayloadAction<Book>) => {
                 state.card = state.card.filter(book => book.isbn13 !== action.payload.isbn13)
                 state.isLoading = false
+                localStorage.setItem('card', JSON.stringify(state.card))
             })
             .addCase(order.fulfilled, (state) => {
                 state.card = []
                 state.isLoading = false
+                localStorage.setItem('card', JSON.stringify(state.card))
             })
     }
 })

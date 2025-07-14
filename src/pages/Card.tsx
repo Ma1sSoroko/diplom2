@@ -3,9 +3,10 @@ import { useOutletContext } from 'react-router'
 import { locales } from '../config'
 import type { TitleContextType } from '../types'
 import { useAppSelector, useAppDispatch } from '../redux/store'
-import { fetchBooks, order } from '../redux/booksSlice'
+import { fetchBooks } from '../redux/booksSlice'
 import { BookForCard } from '../components/bookForCard/BookForCard'
 import { useTotalPrice } from '../hooks/useTotalPrice'
+import { order } from '../redux/booksSlice'
 
 export function Card(): React.ReactElement {
     const dispatch = useAppDispatch()

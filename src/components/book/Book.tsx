@@ -1,9 +1,10 @@
 import { Link } from 'react-router'
 import { useAppDispatch, useAppSelector } from '../../redux/store'
-import { addCard, addFavoriteBook } from '../../redux/booksSlice'
+import { addFavoriteBook } from '../../redux/booksSlice'
 import type { Book } from '../../types'
 import { FaBookmark, FaShoppingBasket } from 'react-icons/fa'
 import { locales } from '../../config'
+import { addCard } from '../../redux/booksSlice'
 
 export function Book(props: Book): React.ReactElement {
     const { title, price, image, isbn13 } = props
