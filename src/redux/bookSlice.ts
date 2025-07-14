@@ -4,7 +4,7 @@ import { requestBook } from '../services/books'
 
 export const fetchBook = createAsyncThunk<Book, string>('book/fetchBook', async (isbn13: string) => {
   const data = await requestBook(isbn13)
-  
+
   // Проверка на ошибку
   if (!data) {
     throw new Error('Failed to fetch book')

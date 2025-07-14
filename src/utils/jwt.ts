@@ -11,7 +11,7 @@ interface JwtUtils {
 }
 
 export const jwt: JwtUtils = {
-  getFromLocalStorage (): JwtType | null {
+  getFromLocalStorage(): JwtType | null {
     const jwt = localStorage.getItem(JWT_KEY)
 
     if (jwt) {
@@ -21,15 +21,15 @@ export const jwt: JwtUtils = {
     return null
   },
 
-  setToLocalStorage (jwt: JwtType) {
+  setToLocalStorage(jwt: JwtType) {
     localStorage.setItem(JWT_KEY, JSON.stringify(jwt))
   },
 
-  clearJwt () {
+  clearJwt() {
     localStorage.removeItem(JWT_KEY)
   },
 
-  isTokenExpired (access: string): boolean {
+  isTokenExpired(access: string): boolean {
     const { exp } = jwtDecode(access)
 
     return Date.now() >= (exp || 0) * 1000

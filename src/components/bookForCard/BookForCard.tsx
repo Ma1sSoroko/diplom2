@@ -9,7 +9,7 @@ import { FaTrash } from 'react-icons/fa'
 export function BookForCard(props: Book): React.ReactElement {
     const { title, image, isbn13, price } = props
     const dispatch = useAppDispatch()
-    
+
     function handleClickRemoveFromCard() {
         dispatch(removeCard(props))
     }

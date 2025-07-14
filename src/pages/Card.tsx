@@ -22,7 +22,7 @@ export function Card(): React.ReactElement {
     // Установка заголовка страницы
     useEffect(() => { setTitle(locales[lang].card.title) }, [lang])
 
-    
+
     if (card.length == 0) {
         return <div>{locales[lang].card.empty}</div>
     }

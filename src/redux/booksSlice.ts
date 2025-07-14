@@ -13,7 +13,7 @@ export const fetchBooks = createAsyncThunk<BooksResponseType, BooksParamsType, {
     async (params: BooksParamsType = {}) => {
         const { limit = 20, offset = 0 } = params
 
-        const data = await requestBooks({...params, limit, offset })
+        const data = await requestBooks({ ...params, limit, offset })
         return data as BooksResponseType
     }
 )

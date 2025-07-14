@@ -6,28 +6,28 @@ import type { JwtType } from '../types'
 import { fetchRefresh } from '../redux/auth/authSlice'
 
 const client = axios.create({
-    baseURL: baseUrl
+  baseURL: baseUrl
 })
 
 client.interceptors.request.use(async function (config) {
-    if (config.url?.includes(authRefreshEndpoint)) {
-      return config
+  if (config.url?.includes(authRefreshEndpoint)) {
+    return config
+  }
+
+  let token = store.getState().auth.jwt
+
+  if (token) {
+    if (jwt.isTokenExpired(token.access)) {
+      await store.dispatch(fetchRefresh({ refresh: token.refresh }))
+      token = store.getState().auth.jwt as JwtType
     }
-  
-    let token = store.getState().auth.jwt
-  
-    if (token) {
-      if (jwt.isTokenExpired(token.access)) {
-        await store.dispatch(fetchRefresh({ refresh: token.refresh }))
-        token = store.getState().auth.jwt as JwtType
-      }
-  
-      config.headers.Authorization = `Bearer ${token.access}`
-    }
-  
-      return config
-    }
-  )
+
+    config.headers.Authorization = `Bearer ${token.access}`
+  }
+
+  return config
+}
+)
 
 export const get = client.get
 export const post = client.post

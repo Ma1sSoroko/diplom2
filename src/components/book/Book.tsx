@@ -10,7 +10,7 @@ export function Book(props: Book): React.ReactElement {
     const { title, price, image, isbn13 } = props
     const dispatch = useAppDispatch()
     const lang = useAppSelector(state => state.lang.lang)
-    
+
     function handleClickAddToFavorite() {
         dispatch(addFavoriteBook(props))
     }

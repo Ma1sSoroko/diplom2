@@ -1,21 +1,20 @@
 import { useEffect } from 'react'
-import { useParams, NavLink, useOutletContext } from 'react-router'
+import { useParams, useOutletContext } from 'react-router'
 import { Book } from '../components/book/Book'
 import { locales } from '../config'
 import type { TitleContextType } from '../types'
 import { useAppSelector, useAppDispatch } from '../redux/store'
 import { fetchBooks } from '../redux/booksSlice'
-import { buildSchemePagination } from '../utils/buildPagination'
+import { Pagination } from '../components/pagination/Pagination'
 
 export function AllBooks(): React.ReactElement {
-    const { currentPage = 1, query = '' } = useParams()
+    const { currentPage = 1, query } = useParams()
     const dispatch = useAppDispatch()
     const lang = useAppSelector(state => state.lang.lang)
     const { books, isLoading, error } = useAppSelector(state => state.books)
     const { setTitle } = useOutletContext<TitleContextType>()
-    const total = (books?.length || 0) / 20
 
-
+    // Запрос книг
     useEffect(() => {
         const offset = (Number(currentPage) - 1) * 20
         dispatch(fetchBooks({ offset, search: query ?? '' }))
@@ -39,36 +38,16 @@ export function AllBooks(): React.ReactElement {
         return <div>{locales[lang].allBooks.empty}</div>
     }
 
-    // Пагинация
-    function renderPagination(): React.ReactElement {
-        const pageCount = Math.ceil(total / 20)
-        const pagination = buildSchemePagination(+currentPage, pageCount)
-
-        return (
-            <nav className="my-4">
-                <ul className="pagination">
-                    {pagination.map((item: number | string, index: number) => {
-                        if (item === '...') {
-                            return <li className="page-item disabled" key={index}><span className="page-link">{item}</span></li>
-                        }
-
-                        return <li className="page-item" key={index}><NavLink className="page-link" to={`/books/all/${item}`}>{item}</NavLink></li>
-                    })}
-                </ul>
-            </nav>
-        )
-    }
-
     // Отображение книг
     return (
         <div>
-            {renderPagination()}
+            <Pagination />
             <div className="d-flex flex-wrap gap-3 justify-content-center">
                 {books && books.map(book => (
                     <Book key={book.isbn13} {...book} />
                 ))}
             </div>
-            {renderPagination()}
+            <Pagination />
         </div>
     )
 }

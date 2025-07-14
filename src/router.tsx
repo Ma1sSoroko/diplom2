@@ -30,7 +30,7 @@ const routes: RouteObject[] = [
             },
             {
                 path: 'books/search/:query',
-                element: <Search />,    
+                element: <Search />,
             },
             {
                 path: '/books/search/:query/:currentPage',
